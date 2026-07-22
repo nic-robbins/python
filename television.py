@@ -4,6 +4,10 @@ class Television:
     MIN_CHANNEL = 0
     MAX_CHANNEL = 3
 
+    current_volume = 0
+    mute_volume = 0
+    unmute_volume = current_volume
+
     def __init__(self):
         self.__muted = False
         self.__volume = Television.MIN_VOLUME
@@ -11,13 +15,27 @@ class Television:
         self.__channel = Television.MIN_CHANNEL
 
     def power(self):
-        pass
+        if self.__status:
+            self.__status == False
+        else:
+            self.__status == True
+        return self.__status
 
-    def mute(self):
-        pass
-
+    def muted(self):
+        if self.__muted:
+            self.__muted == False
+            return Television.mute_volume
+        else:
+            self.__status == False
+            return Television.unmute_volume
+    
     def channel_up(self):
-        pass
+        if self.__status:
+            if self.__channel < Television.MAX_CHANNEL:
+                self.__channel += 1
+            else:
+                self.__channel = Television.MIN_CHANNEL
+        return self.__channel
 
     def channel_down(self):
         if self.__status:
@@ -33,12 +51,11 @@ class Television:
                 self.__volume += 1
 
     def volume_down(self):
-        pass
+        if self.__status:
+            self.__muted = True
+            if self.__volume > Television.MIN_VOLUME:
+                self.__volume -= 1
 
     def __str__(self):
-        if self.__muted:
-            return f'Volume = {Television.MIN_VOLUME}'
-        else:
-            return f'current volume' #FIXME: this needs to have code to print the current volume
+        f'Power = {self.__status}, Channel = {self.__channel}, Volume = {self.current_volume}'
     
-
